@@ -1,0 +1,21 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0f3d2e"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;800&display=swap"><link rel="stylesheet" href="style.css"><title>بيانات الطالب</title></head><body>
+<div id="top"></div><main class="wrap hero center"><h1 id="h">بياناتك قبل الاختبار</h1><p id="sub">اكتب بياناتك للمتابعة.</p>
+<form class="form" id="f" novalidate style="text-align:right">
+<div><label for="nm">الاسم</label><input id="nm" autocomplete="name" placeholder="الاسم الثلاثي"><div class="err" id="e-nm"></div></div>
+<div><label for="ph">رقم الجوال</label><input id="ph" type="tel" inputmode="numeric" dir="ltr" placeholder="05XXXXXXXX" style="text-align:right"><div class="err" id="e-ph"></div></div>
+<div><label for="gr">الصف الدراسي</label><select id="gr"><option value="">اختر الصف</option></select><div class="err" id="e-gr"></div></div>
+<button type="submit" id="go">متابعة</button></form><p><a href="exams.html">← العودة إلى الاختبارات</a></p></main><footer id="foot"></footer>
+<script src="site.js"></script><script>
+SITE.shell('exams');var $=function(i){return document.getElementById(i)},id=SITE.q('e')||'';
+SITE.G.forEach(function(g){var o=document.createElement('option');o.value=g[0];o.textContent=g[1];$('gr').appendChild(o)});
+var s=SITE.get();if(s){$('nm').value=s.name||'';$('ph').value=s.phone||'';$('gr').value=s.grade||''}
+if(!id){$('h').textContent='تعديل البيانات';$('go').textContent='حفظ والعودة إلى الاختبارات'}
+else fetch('data/exams/index.json').then(function(r){return r.json()}).then(function(l){var x=(Array.isArray(l)?l:l.exams||[]).filter(function(y){return y.file===id})[0];if(x)$('sub').textContent='الاختبار: '+x.title}).catch(function(){});
+function digits(t){return t.replace(/[٠-٩]/g,function(d){return d.charCodeAt(0)-1632})}
+$('f').onsubmit=function(ev){ev.preventDefault();var nm=$('nm').value.trim().replace(/\s+/g,' '),ph=digits($('ph').value).replace(/[\s\-+]/g,''),gr=$('gr').value,ok=true;
+ function chk(k,bad,m){$('e-'+k).textContent=bad?m:'';$({nm:'nm',ph:'ph',gr:'gr'}[k]).classList.toggle('bad',!!bad);if(bad)ok=false}
+ chk('nm',nm.length<3,'اكتب اسمك');if(/^9665\d{8}$/.test(ph))ph='0'+ph.slice(3);else if(/^5\d{8}$/.test(ph))ph='0'+ph;
+ chk('ph',!/^05\d{8}$/.test(ph),'اكتب رقم جوال سعودي صحيح مثل 0501234567');chk('gr',!gr,'اختر الصف الدراسي');if(!ok)return;
+ var st={name:nm,phone:ph,grade:+gr,gradeLabel:$('gr').selectedOptions[0].text};SITE.set(st);$('go').disabled=true;$('go').textContent='جارٍ الحفظ...';
+ Promise.race([SITE.send(Object.assign({type:'register'},st)),new Promise(function(r){setTimeout(r,2500)})]).then(function(){location.href=id?'exam.html?e='+encodeURIComponent(id):'exams.html'})};
+</script></body></html>

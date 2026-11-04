@@ -1,0 +1,13 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0f3d2e"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;800&display=swap"><link rel="stylesheet" href="style.css"><title>الرئيسية</title></head><body>
+<div id="top"></div><main class="wrap hero center" id="home"></main><footer id="foot"></footer>
+<script src="site.js"></script><script>
+SITE.shell('home').then(function(){var c=SITE.cfg(),e=SITE.esc,T={telegram:'تيليجرام',whatsapp:'واتساب',email:'البريد',phone:'الهاتف'};
+var h='<div class="logo-wrap"><img src="'+e(c.logo||'logo.jpeg')+'" alt="" width="1000" height="587"><h2>'+e(c.name)+'</h2></div><h1>'+e(c.tagline)+'</h1>';
+(c.about||[]).forEach(function(p){h+='<p class="about">'+e(p)+'</p>'});
+if((c.info||[]).length)h+='<div class="info">'+c.info.map(function(i){return '<span><b>'+e(i.label)+':</b> '+e(i.value)+'</span>'}).join('')+'</div>';
+h+='<a class="cta" href="exams.html">تصفّح الاختبارات</a><h2>تواصل معنا</h2><div class="contacts">';
+(c.contacts||[]).forEach(function(x){var v=x.value||'',u=x.url||(x.type==='email'&&v?'mailto:'+v:x.type==='phone'&&v?'tel:'+v:'');if(!u&&!v)return;
+ h+=(u?'<a class="cc '+e(x.type)+'" href="'+e(u)+'" target="_blank" rel="noopener">':'<div class="cc">')+e(x.label||T[x.type]||x.type)+'<small>'+e(v)+'</small>'+(u?'</a>':'</div>')});
+h+='</div>';if(c.qr)h+='<div class="qr"><img src="'+e(c.qr)+'" alt="باركود" width="378" height="415" loading="lazy"><small>امسح الباركود للانضمام</small></div>';
+document.getElementById('home').innerHTML=h});
+</script></body></html>
