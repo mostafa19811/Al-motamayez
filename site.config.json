@@ -2,16 +2,49 @@
  "_help": "عدّل هذا الملف فقط لتغيير بيانات الموقع. sheetUrl = رابط Google Apps Script (/exec) لحفظ بيانات الطلاب. اترك أي وسيلة تواصل بلا url/value وستختفي.",
  "name": "أكاديمية معافر",
  "tagline": "اختبارات تدريبية تفاعلية في القدرات والتحصيلي",
- "about": ["منصة اختبارات تدريبية غير رسمية تساعدك على التدرّب على مهارات الكمي واللفظي، مع نتيجة فورية ودرجة لكل مهارة وشرح للحل.", "سجّل بياناتك، اختر الاختبار، وابدأ."],
- "info": [{"label": "الفئة", "value": "الأول إلى الثالث الثانوي"}, {"label": "الفروع", "value": "كمي ولفظي"}],
+ "about": [
+  "منصة اختبارات تدريبية غير رسمية تساعدك على التدرّب على مهارات الكمي واللفظي، مع نتيجة فورية ودرجة لكل مهارة وشرح للحل.",
+  "سجّل بياناتك، اختر الاختبار، وابدأ."
+ ],
+ "info": [
+  {
+   "label": "الفئة",
+   "value": "الأول إلى الثالث الثانوي"
+  },
+  {
+   "label": "الفروع",
+   "value": "كمي ولفظي"
+  }
+ ],
  "contacts": [
-  {"type": "telegram", "label": "جروب تيليجرام", "url": "https://t.me/moafercourses", "value": "t.me/moafercourses"},
-  {"type": "whatsapp", "label": "جروب واتساب", "url": "https://chat.whatsapp.com/IexTkv3TJyKCydq7MLojh6", "value": "انضم عبر واتساب"},
-  {"type": "email", "label": "البريد الإلكتروني", "value": ""},
-  {"type": "phone", "label": "الهاتف", "value": ""}
+  {
+   "type": "telegram",
+   "label": "جروب تيليجرام",
+   "url": "https://t.me/moafercourses",
+   "value": "t.me/moafercourses"
+  },
+  {
+   "type": "whatsapp",
+   "label": "جروب واتساب",
+   "url": "https://chat.whatsapp.com/IexTkv3TJyKCydq7MLojh6",
+   "value": "انضم عبر واتساب"
+  },
+  {
+   "type": "email",
+   "label": "البريد الإلكتروني",
+   "value": ""
+  },
+  {
+   "type": "phone",
+   "label": "الهاتف",
+   "value": ""
+  }
  ],
  "qr": "tg-qr.png",
  "logo": "logo.jpeg",
  "footer": "نماذج تدريبية غير رسمية من أكاديمية معافر",
- "sheetUrl": ""
+ "sheetUrl": "",
+ "salt": "motamayez-2026",
+ "accessHashes": [],
+ "_password": "كلمة مرور الدخول: افتح password-tool.html وأنشئ بصمة لكلمة المرور والصقها داخل accessHashes (يمكن وضع أكثر من بصمة لأكثر من كلمة). اترك القائمة فارغة لفتح الموقع بلا كلمة مرور. لا تغيّر salt بعد إنشاء البصمات."
 }

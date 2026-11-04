@@ -4,8 +4,8 @@ if(!st){location.replace('register.html'+(id?'?e='+encodeURIComponent(id):''));r
 const L='أبجد';
 const fail=m=>{$('#app').innerHTML=`<div class="wrap"><div class="panel res"><h2>${m}</h2><div class="acts"><a class="btn pri" href="exams.html">العودة إلى الاختبارات</a></div></div></div>`};
 if(!/^[\w-]+$/.test(id))return fail('الاختبار غير موجود');
-Promise.all([fetch(S.BASE+'data/exams/'+id+'.json').then(r=>r.ok?r.json():null).catch(()=>null),S.ready]).then(([E])=>{
- if(!E||!Array.isArray(E.questions)||!E.questions.length)return fail('هذا الاختبار غير متاح حاليًا');run(E)});
+S.guard().then(ok=>{if(!ok)return;Promise.all([fetch(S.BASE+'data/exams/'+id+'.json').then(r=>r.ok?r.json():null).catch(()=>null),S.ready]).then(([E])=>{
+ if(!E||!Array.isArray(E.questions)||!E.questions.length)return fail('هذا الاختبار غير متاح حاليًا');run(E)})});
 const fc=(f,p)=>f?(f[p+'s']?`font-size:${f[p+'s']}px;`:'')+(f[p+'f']?`font-family:'${f[p+'f']}',Cairo,sans-serif;`:'')+(f[p+'a']?`text-align:${f[p+'a']};`:''):'';
 const GF=['Tajawal','Almarai','Amiri','Noto Naskh Arabic','Noto Kufi Arabic'];
 function loadFonts(Q){const u=new Set();Q.forEach(q=>q.fm&&['qf','of'].forEach(k=>{if(GF.includes(q.fm[k]))u.add(q.fm[k])}));if(u.size){const l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?'+[...u].map(f=>'family='+f.replace(/ /g,'+')+':wght@400;700').join('&')+'&display=swap';document.head.appendChild(l)}}
